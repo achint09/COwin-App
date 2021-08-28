@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%if(formType==="bydistrict"){%>
+    <form action="/selectDistrict"  method="POST">
+        <label for="states">Select a State</label>
+        <select name="states" onchange='this.form.submit()'>
+            <option value="" disabled selected hidden><%=selectedState%></option>
+            <%states.forEach((state)=>{%>
+            <option  value='{"state_id":"<%=state.state_id%>","state_name":"<%=state.state_name%>"}'><%=state.state_name%></option>
+            <%});%>
+        </select>
+    </form>
+    <form action="/"  method="POST">
+        <label for="states">Select a State</label>
+        <select name="city_id">
+            <option value="" disabled selected hidden>Select a District</option>
+            <%cities.forEach((city)=>{%>
+            <option value="<%=city.district_id%>"><%=city.district_name%></option>
+            <%});%>
+        </select>
+        <input type="date" name="date" id="">
+        <button type="submit" name="reqtype" value="searchByDistrict">submit</button>
+    </form>
+    <%}else{%>
+        <form action="/" method="POST">
+            <input type="text" name="pinCode" placeholder="pin code" id="" autocomplete="false">
+                <input type="date" name="date" id="">
+                <button type="submit">submit</button>
+        </form>
+        <%}%>
+</body>
+</html>
